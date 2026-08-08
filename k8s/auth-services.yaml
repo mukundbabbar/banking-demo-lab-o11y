@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth-services
-          image: mukundbabbar/banking-demo:v1.080826-0313
+          image: mukundbabbar/banking-demo:v1.080826-0459
           imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 8080
