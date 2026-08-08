@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: background-check
-          image: mukundbabbar/java-apps:1.0
+          image: mukundbabbar/banking-demo:v1.080826-0313
           imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 8080
