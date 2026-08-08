@@ -6,11 +6,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: loan-frontend
+      name: loan-frontend
   template:
     metadata:
       labels:
-        app: loan-frontend
+        name: loan-frontend
     spec:
       containers:
         - name: loan-frontend
@@ -41,7 +41,7 @@ metadata:
   name: loan-frontend-service
 spec:
   selector:
-    app: loan-frontend
+    name: loan-frontend
   ports:
     - protocol: TCP
       port: 81
