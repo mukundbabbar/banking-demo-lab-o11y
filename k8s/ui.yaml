@@ -14,12 +14,12 @@ spec:
     spec:
       containers:
         - name: loan-frontend
-          image: mukundbabbar/banking-demo-ui:latest
+          image: mukundbabbar/banking-demo-ui:1.1
           ports:
             - containerPort: 81
           envFrom:
             - configMapRef:
-                name: appd-config
+                name: agent-config
           env:
             - name: APPD_JS_SNIPPET
               valueFrom:

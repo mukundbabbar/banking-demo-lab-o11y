@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: obi
+spec:
+  selector:
+    matchLabels:
+      app: obi
+  template:
+    metadata:
+      labels:
+        app: obi
+    spec:
+      hostPID: true
+      serviceAccountName: obi
+
+      containers:
+      - name: obi
+        image: otel/ebpf-instrument:latest
+
+        securityContext:
+          privileged: true
+
+        env:
+        - name: OTEL_EBPF_AUTO_TARGET_EXE
+          value: "*/legacy-app"
+
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: "http://splunk-otel-collector:4318"
+
+        - name: OTEL_EBPF_KUBE_METADATA_ENABLE
+          value: "true"
+
+        - name: OTEL_EBPF_METRICS_FEATURES
+          value: "application"
+
+        volumeMounts:
+        - name: debugfs
+          mountPath: /sys/kernel/debug
+
+        - name: tracefs
+          mountPath: /sys/kernel/tracing
+
+        - name: bpffs
+          mountPath: /sys/fs/bpf
+
+      volumes:
+      - name: debugfs
+        hostPath:
+          path: /sys/kernel/debug
+
+      - name: tracefs
+        hostPath:
+          path: /sys/kernel/tracing
+
+      - name: bpffs
+        hostPath:
+          path: /sys/fs/bpf
