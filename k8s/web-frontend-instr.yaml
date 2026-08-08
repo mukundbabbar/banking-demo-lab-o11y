@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: web-frontend
-          image: mukundbabbar/banking-demo:v1.080826-0459
+          image: mukundbabbar/banking-demo:latest
           imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 8080
@@ -37,8 +37,6 @@ spec:
               value: "0.1"
             - name: SPLUNK_SNAPSHOT_PROFILER_MAX_STACK_DEPTH
               value: "2048"
-            - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: ""
             - name: SPLUNK_OPAMP_ENABLED
               value: "true"
             - name: SPLUNK_OPAMP_ENDPOINT
